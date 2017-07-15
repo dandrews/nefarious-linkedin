@@ -37,7 +37,7 @@ Here's a screenshot that shows just that:
 
 ![LinkedIn Spying](./images/spying.gif "LinkedIn Spying")
 
-They are making a bunch of requests to local extensions (chrome-extension://)
+They are making a bunch of requests to local extensions (`chrome-extension://`)
 URLs. If you had any of the extensions installed and the resource is publicly 
 available the web request wouldn't fail (and LinkedIn would know you are using
 the extension). 
