@@ -35,7 +35,12 @@ they are making requests to your local browser extensions!
 
 Here's a screenshot that shows just that: 
 
-    TODO 
+![LinkedIn Spying](./images/spying.gif "LinkedIn Spying")
+
+They are making a bunch of requests to local extensions (chrome-extension://)
+URLs. If you had any of the extensions installed and the resource is publicly 
+available the web request wouldn't fail (and LinkedIn would know you are using
+the extension). 
 
 ###### Behavioral Patterns
 
