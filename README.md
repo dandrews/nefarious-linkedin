@@ -54,7 +54,7 @@ but the characters are all encoded in a way which makes reading it as a human
 difficult. If you parse the JSON you can retrieve a human friendly object to
 examine!
 
-Try it yourself, open up a LinkedIn page, open the inspector and run:
+Try it yourself, visit a LinkedIn page, open the inspector and run:
 
 ```javascript 
 JSON.parse(window.atob(localStorage.getItem('C_C_M')))
