@@ -1,0 +1,9 @@
+html, body {
+    margin: 0;
+    padding: 5px;
+    box-sizing: border-box;
+    width: 700px;
+    height: 300px;
+    overflow: auto;
+}
+
