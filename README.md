@@ -86,6 +86,14 @@ clearly a simple substitution cipher of some kind.
 I've gone ahead and broke most of the cipher and that is how the extension is 
 able to show you the names of each extension they are looking for.
 
+The other information in the JSON is not so interesting. There's mainly book
+keeping information such as how often to scan your browser, the current version
+of the JSON document, which URLs to scan for each extension, etc.
+
+### Tips for Extension Authors
+
+    TODO 
+    
 ### Credit 
 
 The squirrel icon used by the extension was found on 
