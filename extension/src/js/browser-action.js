@@ -1,5 +1,5 @@
 window.onload = function () {
-    var placeholder = document.querySelector('#placeholder');
+    var body = document.querySelector('body');
 
     function decode(str) {
         if (!str) { return str; }
@@ -85,7 +85,7 @@ window.onload = function () {
 
                 html += '</table>';
 
-                placeholder.innerHTML = html;
+                body.innerHTML = html;
             }
         }
     );
