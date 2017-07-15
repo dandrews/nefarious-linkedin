@@ -1,4 +1,5 @@
 html, body {
+  font-family: 'Helevetica', sans-serif;
   background-color: #fafafa;
   margin: 0;
   padding: 5px;
@@ -28,10 +29,10 @@ a:focus {
 }
 
 table {  
-    color: #333;
-    width: 200px; 
-    border-collapse: collapse; 
-    border-spacing: 0; 
+  color: #333;
+  width: 200px; 
+  border-collapse: collapse; 
+  border-spacing: 0; 
 }
 
 td, th { 
@@ -40,13 +41,13 @@ td, th {
 }
 
 th {  
-    background: #F3F3F3;
-    font-weight: bold; 
+  background: #F3F3F3;
+  font-weight: bold; 
 }
 
 td {  
-    background: #FAFAFA;
-    text-align: center;
+  background: #FAFAFA;
+  text-align: center;
 }
 
 .short {
