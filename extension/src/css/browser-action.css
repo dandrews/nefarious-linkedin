@@ -1,9 +1,26 @@
 html, body {
-    margin: 0;
-    padding: 5px;
-    box-sizing: border-box;
-    width: 700px;
-    height: 300px;
-    overflow: auto;
+  margin: 0;
+  padding: 5px;
+  box-sizing: border-box;
+  width: 250px;
+  height: 350px;
+  overflow: auto;
 }
 
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hidden {
+  display: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:focus {
+  outline: none;
+}

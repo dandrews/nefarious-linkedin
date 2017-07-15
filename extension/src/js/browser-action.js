@@ -1,5 +1,7 @@
+/* globals chrome */
+
 window.onload = function () {
-    var body = document.querySelector('body');
+    var contents = document.querySelector('body > div');
 
     function decode(str) {
         if (!str) { return str; }
@@ -62,7 +64,7 @@ window.onload = function () {
 
         return decoded;
     }
-
+    
     // Wait for message from the web page
     chrome.runtime.onMessage.addListener(
         function(request, sender, sendResponse) {
@@ -74,18 +76,18 @@ window.onload = function () {
                 // Assumes this is well formatted...
                 var parsed = JSON.parse(atob(request.encodedData))
 
-                var html = '<table><tr><th>Name</th><th>Encoded</th><th>Path></th></tr>';
+                var html = '<table><tr><th>Name</th></tr>';
 
                 // Process each
                 parsed.Metadata.ext.forEach(function (ext) {
-                    html += '<tr><td>' + decode(ext.name) + '</td>';
-                    html += '<td>' + ext.name + '</td>';
-                    html += '<td>' + (ext.path[0] || 'N/A') + '</td></tr>';
+                    html += '<tr><td>' + decode(ext.name) + '</td></tr>';
+                    // html += '<td>' + ext.name + '</td>';
+                    // html += '<td>' + (ext.path[0] || 'N/A') + '</td></tr>';
                 });
 
                 html += '</table>';
 
-                body.innerHTML = html;
+                contents.innerHTML = html;
             }
         }
     );
@@ -101,7 +103,7 @@ window.onload = function () {
                 file: 'src/js/inject.js'
             });
         } else {
-            placeholder.innerText = 'Open on LinkedIn';
+            document.querySelector('#unsupported').classList.remove('hidden');
         }
     });
 };
