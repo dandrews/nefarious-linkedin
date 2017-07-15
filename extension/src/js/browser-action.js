@@ -1,70 +1,68 @@
-/* globals chrome */
+/* globals chrome, atob */
+
+function decode(str) {
+    if (!str) { return str; }
+
+    var mapping = {
+        'r': 'a',
+        'O': 'a',
+        'x': 'b',
+        'L': 'b',
+        'G': 'c',
+        'I': 'C',
+        'w': 'd',
+        'v': 'd',
+        'f': 'e',
+        'P': 'E',
+        'B': 'F',
+        'H': 'f',
+        'U': 'g',
+        'k': 'G',
+        'F': 'h',
+        'n': 'H',
+        'T': 'i',
+        'D': 'i',
+        'u': 'k',
+        'd': 'l',
+        'a': 'L',
+        'h': 'M',
+        'h': 'm',
+        'A': 'M',
+        'X': 'n',
+        'W': 'o',
+        'c': 'O',
+        'o': 'P',
+        'S': 'p',
+        'M': 'q',
+        'l': 'r',
+        's': 'r',
+        'j': 'S',
+        'C': 's',
+        'Y': 't',
+        'y': 't',
+        'R': 'u',
+        'V': 'u',
+        'K': 'v',
+        'Q': 'W',
+        'm': 'x',
+        'Z': 'y',
+        'i': 'z',
+    };
+
+    var decoded = '';
+
+    str.split('').forEach(function (char) {
+        if (mapping[char] ) {
+            decoded += mapping[char];
+        } else {
+            decoded += char;
+        }
+    });
+
+    return decoded;
+}
 
 window.onload = function () {
-    var contents = document.querySelector('body > div');
-
-    function decode(str) {
-        if (!str) { return str; }
-
-        var mapping = {
-            'r': 'a',
-            'O': 'a',
-            'x': 'b',
-            'L': 'b',
-            'G': 'c',
-            'I': 'C',
-            'w': 'd',
-            'v': 'd',
-            'f': 'e',
-            'P': 'E',
-            'B': 'F',
-            'H': 'f',
-            'U': 'g',
-            'k': 'G',
-            'F': 'h',
-            'n': 'H',
-            'T': 'i',
-            'D': 'i',
-            'u': 'k',
-            'd': 'l',
-            'a': 'L',
-            'h': 'M',
-            'h': 'm',
-            'A': 'M',
-            'X': 'n',
-            'W': 'o',
-            'c': 'O',
-            'o': 'P',
-            'S': 'p',
-            'M': 'q',
-            'l': 'r',
-            's': 'r',
-            'j': 'S',
-            'C': 's',
-            'Y': 't',
-            'y': 't',
-            'R': 'u',
-            'V': 'u',
-            'K': 'v',
-            'Q': 'W',
-            'm': 'x',
-            'Z': 'y',
-            'i': 'z',
-        };
-
-        var decoded = '';
-
-        str.split('').forEach(function (char) {
-            if (mapping[char] ) {
-                decoded += mapping[char];
-            } else {
-                decoded += char;
-            }
-        });
-
-        return decoded;
-    }
-    
     // Wait for message from the web page
     chrome.runtime.onMessage.addListener(
         function(request, sender, sendResponse) {
@@ -74,20 +72,32 @@ window.onload = function () {
                 }
 
                 // Assumes this is well formatted...
-                var parsed = JSON.parse(atob(request.encodedData))
+                var parsed = JSON.parse(atob(request.encodedData));
 
-                var html = '<table><tr><th>Name</th></tr>';
-
-                // Process each
+                var resultsTable = document.querySelector('table');
+                
+                var extensions = [];
+                
                 parsed.Metadata.ext.forEach(function (ext) {
-                    html += '<tr><td>' + decode(ext.name) + '</td></tr>';
-                    // html += '<td>' + ext.name + '</td>';
-                    // html += '<td>' + (ext.path[0] || 'N/A') + '</td></tr>';
+                    extensions.push(decode(ext.name)); 
+                });
+                
+                extensions.sort(function (a, b) {
+                    return a.toLowerCase().localeCompare(b.toLowerCase());
                 });
 
-                html += '</table>';
-
-                contents.innerHTML = html;
+                extensions.forEach(function (ext) {
+                    var tr = document.createElement('tr');
+                    var td = document.createElement('td');
+                    
+                    td.innerText = ext;
+                    
+                    tr.appendChild(td);
+                    
+                    resultsTable.appendChild(tr);
+                });
+                
+                document.querySelector('#linkedin').classList.remove('hidden');
             }
         }
     );
@@ -104,6 +114,8 @@ window.onload = function () {
             });
         } else {
             document.querySelector('#unsupported').classList.remove('hidden');
+            document.querySelector('html').classList.add('short');
+            document.querySelector('body').classList.add('short');
         }
     });
 };
