@@ -1,7 +1,13 @@
 # Nefarious LinkedIn 
 
-A look at how LinkedIn spies on its users. In particular, how LinkedIn monitors
-which Google Chrome extensions a user has installed. 
+LinkedIn has been caught using dark patterns in the past. However, there's a dark
+pattern being used by LinkedIn today no one talks about. LinkedIn currently spies
+on their own users. In particular, LinkedIn wants to know which browser extensions
+you use and may even ban your account for using them.
+
+I'll dive into how LinkedIn detects extensions, and which extensions they are 
+currently targetting. I have even built a simple browser extension to expose 
+which extensions LinkedIn is scanning you for as well!
 
 ![Demo](images/demo.gif?raw=true "Nefarious LinkedIn Extension Demo")
 
