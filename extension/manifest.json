@@ -1,0 +1,18 @@
+{
+    "name": "Nefarious LinkedIn",
+    "description": "Figure out what extensions LinkedIn is scaning you for.",
+    "homepage_url": "https://github.com/prophittcorey/nefarious-linkedin",
+    "version": "1.0",
+    "permissions": [
+        "activeTab"
+    ],
+    "browser_action": {
+        "default_icon": "src/images/icon.png",
+        "default_title": "Open on LinkedIn",
+        "default_popup": "src/html/browser-action.html"
+    },
+    "icons": {
+        "256": "src/images/icon.png"
+    },
+    "manifest_version": 2
+}
