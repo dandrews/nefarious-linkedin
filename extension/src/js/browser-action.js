@@ -1,5 +1,9 @@
 /* globals chrome, atob */
 
+// 
+// This function attemps to decode the substitution cipher used by LinkedIn
+// to obfuscate each extension's name. 
+//
 function decode(str) {
     if (!str) { return str; }
 
@@ -62,7 +66,10 @@ function decode(str) {
 }
 
 window.onload = function () {
-    // Wait for message from the web page
+    // 
+    // Listen for a message from LinkedIn. If the message contains the encoded
+    // data from localStorage, then we will decode and render it. 
+    //
     chrome.runtime.onMessage.addListener(
         function(request, sender, sendResponse) {
             if (sender.url && sender.url.match(/linkedin\.com/i)) {
@@ -71,15 +78,31 @@ window.onload = function () {
                 }
 
                 // Assumes this is well formatted...
-                var parsed = JSON.parse(atob(request.encodedData));
+                
+                
+                var parsed;
+                
+                try {
+                    parsed = JSON.parse(atob(request.encodedData));
+                } catch(error) {
+                    // Either the data wasn't passed to us, localStorage did 
+                    // not contain the data or LinkedIn changed the way they
+                    // hide this information. 
+                }
 
                 var resultsTable = document.querySelector('table');
                 
                 var extensions = [];
                 
-                parsed.Metadata.ext.forEach(function (ext) {
-                    extensions.push(decode(ext.name)); 
-                });
+                if (parsed !== undefined) {
+                    parsed.Metadata.ext.forEach(function (ext) {
+                        extensions.push(decode(ext.name)); 
+                    });
+                } else {
+                    extensions.push(
+                        '...nothing at this time...'
+                    );
+                }
                 
                 extensions.sort(function (a, b) {
                     return a.toLowerCase().localeCompare(b.toLowerCase());
@@ -101,6 +124,10 @@ window.onload = function () {
         }
     );
 
+    // 
+    // Get the active tab. If the tab is LinkedIn, inject our own content 
+    // script. If it's not, let the user know to open the extension on LinkedIn.
+    //
     chrome.tabs.query({
         active: true,
         currentWindow: true
