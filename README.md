@@ -15,9 +15,9 @@ LinkedIn is currently scanning your browser for.
 ### Installation 
 
 You can click [here](https://chrome.google.com/webstore/detail/nefarious-linkedin/mpkhbmjfapljfhjopagghpfgbmghjpah)
-to install the extension via the Google web store, or you can download the 
-[extension](./extension) folder in this repository and load it via Chrome's 
-`chrome://extensions` page.
+to install the extension via the Google web store, or you can download any 
+[release](https://github.com/prophittcorey/nefarious-linkedin/releases) from this 
+repository and load it via Chrome's `chrome://extensions` page.
 
 If you are unsure how to load an unpacked extension, you can see how [here](https://developer.chrome.com/extensions/getstarted#unpacked).
 
