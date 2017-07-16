@@ -96,17 +96,21 @@ Clearly, they are trying to identify users with the
 extension installed.
 
 Funnily enough they try to obfuscate the name of each extension. If you look at
-the name in the screenshot you can see, `wOmysO` which maps to `Daxtra`. It's 
-clearly a simple substitution cipher of some kind. 
+the name in the screenshot you can see, `wOmysO` which maps to `Daxtra`. It is 
+fairly clear the encoded name has gone through a substitution cipher.
 
-I've gone ahead and broke most of the cipher and that is how the extension is 
-able to show you the names of each extension they are looking for.
+There is enough information in the file to reverse engineer the substitution 
+cipher (which is what I have done in the extension above). 
 
 The other information in the JSON is not so interesting. There's mainly book
 keeping information such as how often to scan your browser, the current version
 of the JSON document, which URLs to scan for each extension, etc.
 
-### Tips for Extension Authors
+I have kept an eye on the document over the last few weeks and I have noticed 
+within the last two weeks the number of extensions LinkedIn is looking for has 
+gone up from 28 to 38.
+
+### Tips for Extension Developers
 
 1. Don't use web accessible resources.
 
@@ -114,14 +118,20 @@ Out of the 38 extensions LinkedIn is currently looking for, 28 are using web
 accessible resources. This is by far the easiest thing to avoid which greatly
 helps your users' privacy. 
 
-2. Don't insert custom elements into another page. 
+Furthermore, there's no good reason to use web accessible resources in an 
+extension! You can always find a solution to your problem that does not require
+them. 
+
+2. Limit content script activity to simple reads. 
 
 This is harder to do because it reduces the usefullness of many extensions, but
 if you want to isolate your extension from the web page you must do this. 
 
+3. Don't display your extension using a content script, try a browser action.
+
 Consider using a browser action instead of modifying the page via content 
 scripts. Browser actions run in an isolated environment and makes detecting them
-much harder.
+much harder if not impossible. 
     
 ### Credit 
 
