@@ -1,13 +1,14 @@
 # Nefarious LinkedIn 
 
-LinkedIn has been caught using dark patterns in the past. However, there's a dark
-pattern being used by LinkedIn today no one talks about. LinkedIn currently spies
-on their own users. In particular, LinkedIn wants to know which browser extensions
-you use and may even ban your account for using them.
+LinkedIn violates their own users' privacy in an effort to detect the usage of 
+browser extensions. At the time of writing this, LinkedIn is scanning visitors 
+for 38 different browser extensions. 
 
-I'll dive into how LinkedIn detects extensions, and which extensions they are 
-currently targetting. I have even built a simple browser extension to expose 
-which extensions LinkedIn is scanning you for as well!
+I will dive into how LinkedIn detects extensions and what extension developers 
+can do to prevent detection. 
+
+I have built an open source browser extension that lists which extensions 
+LinkedIn is currently scanning your browser for.
 
 ![Demo](images/demo.gif?raw=true "Nefarious LinkedIn Extension Demo")
 
@@ -18,7 +19,9 @@ to install the extension via the Google web store, or you can download the
 [extension](./extension) folder in this repository and load it via Chrome's 
 `chrome://extensions` page.
 
-### How?
+If you are unsure how to load an unpacked extension, you can see how [here](https://developer.chrome.com/extensions/getstarted#unpacked).
+
+### How does LinkedIn detect extensions?
 
 There are currently two common ways to detect a browser extension. The first of
 which is by scanning public resources available in the extension, the other is
@@ -97,7 +100,6 @@ of the JSON document, which URLs to scan for each extension, etc.
 Out of the 38 extensions LinkedIn is currently looking for, 28 are using web 
 accessible resources. This is by far the easiest thing to avoid which greatly
 helps your users' privacy. 
-
 
 2. Don't insert custom elements into another page. 
 
