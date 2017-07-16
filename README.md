@@ -92,7 +92,21 @@ of the JSON document, which URLs to scan for each extension, etc.
 
 ### Tips for Extension Authors
 
-    TODO 
+1. Don't use web accessible resources.
+
+Out of the 38 extensions LinkedIn is currently looking for, 28 are using web 
+accessible resources. This is by far the easiest thing to avoid which greatly
+helps your users' privacy. 
+
+
+2. Don't insert custom elements into another page. 
+
+This is harder to do because it reduces the usefullness of many extensions, but
+if you want to isolate your extension from the web page you must do this. 
+
+Consider using a browser action instead of modifying the page via content 
+scripts. Browser actions run in an isolated environment and makes detecting them
+much harder.
     
 ### Credit 
 
