@@ -23,44 +23,57 @@ If you are unsure how to load an unpacked extension, you can see how [here](http
 
 ### How does LinkedIn detect extensions?
 
-There are currently two common ways to detect a browser extension. The first of
-which is by scanning public resources available in the extension, the other is
-by analyzing the web page for extension-specific behavior. 
+There are two common ways to detect the usage of a browser extension. The first 
+method is by scanning public resources available in the extension, the other is
+by analyzing the target web page for abnormal behavior. 
 
-LinkedIn is currently using _both_ of these methods. 
+LinkedIn is currently using _**both**_ of these methods. 
 
 ###### Public Resources
 
-If you ever browse LinkedIn with your developer console open you may have noticed
-a slew of web request errors. If you give them a closer look you can see something
-rather suspicious. The web requests LinkedIn makes are not over the web, rather, 
-they are making requests to your local browser extensions!
+Public resource detection is by far the simplest method to detect the usage of 
+an extension. It is also the easiest to detect as an end user. In fact, it is 
+what turned me on to LinkedIn's nefarious activities to begin with.
 
-Here's a screenshot that shows just that: 
+If you browser LinkedIn with your developer console open you may occasionally 
+notice a series of network request errors. If you look at the requests you will
+notice they are not external requests, rather they are requests to local files.
+These local files begin with `chrome-extension://` which indicates the web page
+is making requests to files located in your browser itself. 
+
+I have attached a little animated gif showing what these requests look like on 
+LinkedIn. 
 
 ![LinkedIn Spying](./images/spying.gif "LinkedIn Spying")
 
-They are making a bunch of requests to local extensions (`chrome-extension://`)
-URLs. If you had any of the extensions installed and the resource is publicly 
-available the web request wouldn't fail (and LinkedIn would know you are using
-the extension). 
+In this case, the presence of an error message indicates the resource was not 
+available and therefore the extension they were looking for is not installed on
+your browser. If the request succeeded LinkedIn would then know you do have the 
+extension installed. 
 
 ###### Behavioral Patterns
 
-The second way to detect an extension is by looking at the web page and try to
-identify changes to the web page caused by well known extensions. This can be
-error prone and can be forged by other extensions. It appears LinkedIn uses this
-method as well. 
+The second method to detect the usage of an extension is by examining the web 
+page itself and identifying any side effects of an extension. LinkedIn is 
+actively using CSS selectors to locate identifying elements on the page. 
 
-LinkedIn stores (and tries to obfuscate) a file on your system that contains 
-which patterns to search for a given extension. The file itself is located in
-the local storage of your browser under the key `C_C_M`. If you look at the 
-contents of the key, you'll see gibberish. The contents are base64 encoded. 
+For instance, they may look for an ID or class used by the extension, etc. 
+
+LinkedIn uses your browser's local storage to store a JSON file that contains 
+a list of extensions to detect. Each extension contains one or more public 
+resources to look for as well as one or more CSS selectors to use to try an
+detect the extension. 
+
+LinkedIn tries to obfuscate the JSON document but doesn't do a very good job. 
+
+The file itself is located in the local storage of your browser under the key 
+`C_C_M`. If you look at the contents of the key, you'll see gibberish. The 
+contents are base64 encoded. 
 
 Once decoded the contents are further obfuscated. It's clearly a JSON document 
-but the characters are all encoded in a way which makes reading it as a human 
-difficult. If you parse the JSON you can retrieve a human friendly object to
-examine!
+but the characters are all converted to their unicode byte patterns which makes 
+reading it as a human difficult. If you parse the JSON you can retrieve a human 
+friendly object to examine. 
 
 Try it yourself, visit a LinkedIn page, open the inspector and run:
 
