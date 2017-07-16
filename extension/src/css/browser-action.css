@@ -1,5 +1,6 @@
 html, body {
   font-family: 'Helevetica', sans-serif;
+  font-size: 16px;
   background-color: #fafafa;
   margin: 0;
   padding: 5px;
@@ -28,24 +29,24 @@ a:focus {
   outline: none;
 }
 
-table {  
+table {
   color: #333;
-  width: 200px; 
-  border-collapse: collapse; 
-  border-spacing: 0; 
+  width: 200px;
+  border-collapse: collapse;
+  border-spacing: 0;
 }
 
-td, th { 
-  border: 1px solid #CCC; 
-  height: 30px; 
+td, th {
+  border: 1px solid #CCC;
+  height: 30px;
 }
 
-th {  
+th {
   background: #F3F3F3;
-  font-weight: bold; 
+  font-weight: bold;
 }
 
-td {  
+td {
   background: #FAFAFA;
   text-align: center;
 }
