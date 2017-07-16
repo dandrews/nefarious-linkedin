@@ -25,7 +25,6 @@ function decode(str) {
         'u': 'k',
         'd': 'l',
         'a': 'L',
-        'h': 'M',
         'h': 'm',
         'A': 'M',
         'X': 'n',
