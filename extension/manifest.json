@@ -2,7 +2,7 @@
     "name": "Nefarious LinkedIn",
     "description": "Figure out what extensions LinkedIn is scaning you for.",
     "homepage_url": "https://github.com/prophittcorey/nefarious-linkedin",
-    "version": "1.0",
+    "version": "1.1",
     "permissions": [
         "activeTab"
     ],
