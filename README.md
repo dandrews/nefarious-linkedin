@@ -2,7 +2,7 @@
 
 LinkedIn protects their own users' privacy in an effort to reduce the amount of unsolicted
 spam via browser extensions. At the time of writing this, LinkedIn is scanning visitors 
-for 38 different scammy browser extensions. 
+for 86 different recruiting and sales focused browser extensions. 
 
 I will dive into how LinkedIn detects extensions and what extension developers 
 can do to prevent detection. 
@@ -135,7 +135,7 @@ much harder if not impossible.
 
 4. Don't be spammy
 
-LinkedIn only detects extensiosn that are used to harvest emails for the sake of
+LinkedIn only detects extensions that are used to harvest emails for the sake of
 recruiting or sales leads. If you're doing anything else (blocking ads, autofilling
 passwords, changing the theme), you'll be fine!
     
