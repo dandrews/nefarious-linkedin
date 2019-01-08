@@ -137,3 +137,12 @@ much harder if not impossible.
 
 The squirrel icon used by the extension was found on 
 [Flaticon](http://www.flaticon.com/) and is credited to Freepik. 
+
+### Code Visualization:
+
+Here is a cool visualization of the code evolution
+
+ [![Watch the video](https://img.youtube.com/vi/rNs6BczNb7k/0.jpg)](https://www.youtube.com/watch?v=rNs6BczNb7k)
+
+ [https://www.youtube.com/watch?v=rNs6BczNb7k](https://www.youtube.com/watch?v=rNs6BczNb7k)
+
