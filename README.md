@@ -1,8 +1,8 @@
-# Nefarious LinkedIn 
+# LinkedIn Data-Scraping Detection
 
-LinkedIn violates their own users' privacy in an effort to detect the usage of 
-browser extensions. At the time of writing this, LinkedIn is scanning visitors 
-for 38 different browser extensions. 
+LinkedIn protects their own users' privacy in an effort to reduce the amount of unsolicted
+spam via browser extensions. At the time of writing this, LinkedIn is scanning visitors 
+for 86 different recruiting and sales focused browser extensions. 
 
 I will dive into how LinkedIn detects extensions and what extension developers 
 can do to prevent detection. 
@@ -44,7 +44,7 @@ is making requests to files located in your browser itself.
 I have attached a little animated gif showing what these requests look like on 
 LinkedIn. 
 
-![LinkedIn Spying](./images/spying.gif "LinkedIn Spying")
+![LinkedIn Spying](./images/spying.gif "LinkedIn Protecting")
 
 In this case, the presence of an error message indicates the resource was not 
 available and therefore the extension they were looking for is not installed on
@@ -132,6 +132,12 @@ if you want to isolate your extension from the web page you must do this.
 Consider using a browser action instead of modifying the page via content 
 scripts. Browser actions run in an isolated environment and makes detecting them
 much harder if not impossible. 
+
+4. Don't be spammy
+
+LinkedIn only detects extensions that are used to harvest emails for the sake of
+recruiting or sales leads. If you're doing anything else (blocking ads, autofilling
+passwords, changing the theme), you'll be fine!
     
 ### Credit 
 
