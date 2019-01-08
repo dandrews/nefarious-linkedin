@@ -35,7 +35,7 @@ Public resource detection is by far the simplest method to detect the usage of
 an extension. It is also the easiest to detect as an end user. In fact, it is 
 what turned me on to LinkedIn's nefarious activities to begin with.
 
-If you browser LinkedIn with your developer console open you may occasionally 
+If you browse LinkedIn with your developer console open you may occasionally 
 notice a series of network request errors. If you look at the requests you will
 notice they are not external requests, rather they are requests to local files.
 These local files begin with `chrome-extension://` which indicates the web page
