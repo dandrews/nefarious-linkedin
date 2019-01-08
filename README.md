@@ -1,4 +1,4 @@
-# Helpful LinkedIn 
+# LinkedIn Data-Scraping Detection
 
 LinkedIn protects their own users' privacy in an effort to reduce the amount of unsolicted
 spam via browser extensions. At the time of writing this, LinkedIn is scanning visitors 
